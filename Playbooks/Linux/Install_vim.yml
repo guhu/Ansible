@@ -1,6 +1,6 @@
 ---
 - name: Install vim
-  hosts: host.name.ip
+  hosts: all
   become: true
 
   tasks:
