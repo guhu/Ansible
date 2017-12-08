@@ -1,0 +1,11 @@
+---
+- name: Install vim
+  hosts: host.name.ip
+  become: true
+
+  tasks:
+  
+  - name: Install vim
+    yum:
+      name: vim
+      state: present
