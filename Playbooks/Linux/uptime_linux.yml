@@ -1,0 +1,7 @@
+- name: Uptime_Linux
+  hosts: all
+ 
+  tasks:
+ 
+  - name: Do uptime CMD
+    shell: uptime
