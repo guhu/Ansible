@@ -1,16 +1,15 @@
 ---
-- name: ping testing
-  connection: all
-  gather_facts: no
-- debug: msg="START cli/ping.yaml"
+- name: Ping IOS
+  hosts: all
+  connection: local
+  gather_facts: false
 
+  tasks:
 
-- name: check the startup-config against the running-config
-  ios_config:
-    diff_against: startup
-    diff_ignore_lines:
-      - ntp clock .*
+    - name: Ping IOS
+      ios_command:
+        commands:
+          - write memory
+      register: output
 
-- name: save running to startup when modified
-  ios_config:
-    save_when: modified
+    - debug: var=output.stdout_lines

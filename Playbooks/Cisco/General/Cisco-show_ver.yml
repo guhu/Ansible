@@ -1,16 +1,15 @@
 ---
-- name: Run cisco commands
+- name: Show version IOS
   hosts: all
   connection: local
   gather_facts: false
 
   tasks:
 
-    - name: get base information
+    - name: Show version IOS
       ios_command:
         commands:
           - show version | include IOS
-          - show ip interface brief
       register: output
 
     - debug: var=output.stdout_lines

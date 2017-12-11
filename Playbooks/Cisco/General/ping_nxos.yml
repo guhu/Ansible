@@ -1,19 +1,15 @@
 ---
-
-- name: ping testing
+- name: Ping IOS
+  hosts: all
   connection: local
-  gather_facts: yes
-  hosts: 172.25.6.103
+  gather_facts: false
 
   tasks:
 
-    # test reachability to 8.8.8.8 using mgmt vrf
-    - nxos_ping: dest=8.8.8.8 vrf=PRODUCTION host={{ inventory_hostname }}
+    - name: Ping IOS
+      ios_command:
+        commands:
+          - ping 172.25.3.1
+      register: output
 
-    # Test reachability to a few different public IPs using mgmt vrf
-    # if device has name lookups turned on, you can use names
-    - nxos_ping: dest={{ item }} vrf=PRODUCTION host={{ inventory_hostname }}
-      with_items:
-        - 8.8.8.8
-        - 4.4.4.4
-        - 198.6.1.4
+    - debug: var=output.stdout_lines
