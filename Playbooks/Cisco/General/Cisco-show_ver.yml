@@ -1,34 +1,16 @@
 ---
-  - name: Show version Cisco
-    hosts: all
-    gather_facts: no
-    connection: local
+- name: Run cisco commands
+  hosts: Cisco_IOS
+  connection: local
+  gather_facts: false
 
-    # this is for the IOS Module provider
-    vars:
-      cli:
-        host: "{{ inventory_hostname }}"
-        username: "{{ username }}"
-        password: "{{ password }}"
-        transport: cli
+  tasks:
 
-    tasks:
-      # Collect all facts from the device - this helps set the hostname
-      - ios_facts:
-          gather_subset:
-              - config
-          provider: "{{ cli }}"
+    - name: get base information
+      ios_command:
+        commands:
+          - show version | include IOS
+          - show ip interface brief
+      register: output
 
-      # Network To Code module to grab inventory data
-      - name: show version
-        ntc_show_command:
-          connection: "{{ connection }}"
-          platform: "{{ platform }}"
-          port: "{{ port }}"
-          command: 'show ver'
-          host: "{{ inventory_hostname }}"
-          username: "{{ username }}"
-          password: "{{ password }}"
-        register: results
-
-      - debug: var=results.response
+    - debug: var=output.stdout_lines

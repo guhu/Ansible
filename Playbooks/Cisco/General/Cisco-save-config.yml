@@ -1,4 +1,7 @@
 ---
+- name: ping testing
+  connection: all
+  gather_facts: no
 - debug: msg="START cli/ping.yaml"
 
 
