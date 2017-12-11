@@ -2,7 +2,7 @@
 
 - name: RUN 'SHOW VERSION'
     ios_command:
-      host: "{{ ansible_host}}"
+      host: all
       username: cisco
       password: cisco
       commands: show version
