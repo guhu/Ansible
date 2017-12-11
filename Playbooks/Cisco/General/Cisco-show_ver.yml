@@ -1,6 +1,6 @@
 ---
 - name: Run cisco commands
-  hosts: Cisco_IOS
+  hosts: all
   connection: local
   gather_facts: false
 
