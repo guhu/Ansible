@@ -1,7 +1,6 @@
 ---
 
 - name: ping testing
-  hosts: all
   connection: local
   gather_facts: no
 
