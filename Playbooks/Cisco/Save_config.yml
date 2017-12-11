@@ -1,12 +1,12 @@
 ---
-- name: Ping IOS
+- name: Save Config IOS
   hosts: all
   connection: local
   gather_facts: false
 
   tasks:
 
-    - name: Ping IOS
+    - name: Save config IOS
       ios_command:
         commands:
           - write memory
