@@ -3,6 +3,7 @@
 - name: ping testing
   connection: local
   gather_facts: yes
+  hosts: 172.25.6.103
 
   tasks:
 
