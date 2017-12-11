@@ -1,0 +1,13 @@
+---
+- debug: msg="START cli/ping.yaml"
+
+
+- name: check the startup-config against the running-config
+  ios_config:
+    diff_against: startup
+    diff_ignore_lines:
+      - ntp clock .*
+
+- name: save running to startup when modified
+  ios_config:
+    save_when: modified
