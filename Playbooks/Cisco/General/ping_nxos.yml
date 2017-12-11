@@ -5,5 +5,4 @@
       host: "{{ ansible_host}}"
       username: cisco
       password: cisco
-      commands:
-        - show version
+      commands: show version
